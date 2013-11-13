@@ -38,7 +38,11 @@ module ReputationSystem
       srn = ReputationSystem::Network.get_scoped_reputation_name(self.class.name, reputation_name, scope)
       !!ReputationSystem::Evaluation.find_by_reputation_name_and_source_and_target(srn, source, self)
     end
-
+    
+    def evaluation_by(reputation_name, source, *args)
+      srn, evaluation = find_srn_and_evaluation!(reputation_name, source, args.first)
+      evaluation.try(:value)
+    end
 
     def evaluators_for(reputation_name, *args)
       scope = args.first
