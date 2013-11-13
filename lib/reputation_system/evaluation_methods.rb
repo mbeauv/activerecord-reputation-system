@@ -40,7 +40,7 @@ module ReputationSystem
     end
     
     def evaluation_by(reputation_name, source, *args)
-      srn, evaluation = find_srn_and_evaluation!(reputation_name, source, args.first)
+      srn, evaluation = find_srn_and_evaluation(reputation_name, source, args.first)
       evaluation.try(:value)
     end
 
